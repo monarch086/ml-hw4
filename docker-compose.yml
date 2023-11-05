@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  jupyter-notebook:
+    image: jupyter-notebook
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./src/:/home/jupyter/src
+
