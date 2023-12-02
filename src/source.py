@@ -36,7 +36,7 @@ def process_text(text):
             processed_word = int(float(word)) if word.replace(".", "").replace(",", "").isdigit() else word
             processed_word = num2words(word) if word.isnumeric() else word
             processed_words.append(processed_word)
-        except Exception as e:
+        except Exception:
             processed_words.append(word)
 
     processed_words = [word for word in processed_words if word in nltk_words]

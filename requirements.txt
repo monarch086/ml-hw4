@@ -5,3 +5,5 @@ num2words
 nltk
 pytest
 coverage
+pylint
+ruff

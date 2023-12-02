@@ -39,4 +39,10 @@ jobs:
       - name: Generate coverage report
         run: coverage report
 
+      # - name: Run Pylint
+      #   run: pylint ./src/source.py
+
+      - name: Run ruff
+        run: ruff check .
+
       - run: echo "🍏 This job's status is ${{ job.status }}."
