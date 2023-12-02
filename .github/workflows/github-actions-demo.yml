@@ -39,8 +39,8 @@ jobs:
       - name: Generate coverage report
         run: coverage report
 
-      # - name: Run Pylint
-      #   run: pylint ./src/source.py
+      - name: Run Pylint
+        run: pylint ./src/source.py
 
       - name: Run ruff
         run: ruff check .
