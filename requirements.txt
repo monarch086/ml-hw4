@@ -3,4 +3,5 @@ matplotlib
 scikit-learn
 num2words
 nltk
+pytest
 coverage
