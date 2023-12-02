@@ -2,12 +2,12 @@
 import re
 import string
 from num2words import num2words
-from nltk.corpus import words as nltk_words
+from nltk.corpus import words
 from nltk.tokenize import word_tokenize
 import nltk
 from nltk.stem import WordNetLemmatizer
 nltk.download('wordnet')
-nltk_words_set = set(nltk_words.words())
+nltk_words = set(words.words())
 
 def clean_text(sample):
     """
@@ -51,16 +51,13 @@ def lemmatize_text(text):
     str: The lemmatized text where each word has been reduced to its base form.
     """
     lemmatizer = WordNetLemmatizer()
-    words = word_tokenize(str(text))
-    lemmatized_text = ' '.join(lemmatizer.lemmatize(word) for word in words)
+    tokenized_words = word_tokenize(str(text))
+    lemmatized_text = ' '.join(lemmatizer.lemmatize(word) for word in tokenized_words)
     return lemmatized_text
 
-def _is_convertible_to_number(word):
-    return word.replace(".", "", 1).replace(",", "", 1).isdigit()
-
-def _convert_to_word(word):
+def _convert_to_int_if_numeric(word):
     try:
-        return num2words(int(float(word)))
+        return int(float(word))
     except ValueError:
         return word
 
@@ -83,14 +80,18 @@ def process_text(text):
     tokenization applied.
     """
     lemmatized_text = lemmatize_text(text)
-    words = lemmatized_text.split()
+    lemmatized_words = lemmatized_text.split()
     processed_words = []
 
-    processed_words = [_convert_to_word(word)
-                       if _is_convertible_to_number(word)
-                       else word for word in words]
+    for word in lemmatized_words:
+        try:
+            processed_word = _convert_to_int_if_numeric(word)
+            processed_word = num2words(word) if word.isnumeric() else word
+            processed_words.append(processed_word)
+        except Exception:
+            processed_words.append(word)
 
-    processed_words = [word for word in processed_words if word in nltk_words_set]
+    processed_words = [word for word in processed_words if word in nltk_words]
     tokens = word_tokenize(' '.join(processed_words))
     return ' '.join(tokens)
 
@@ -106,8 +107,8 @@ def calculate_sample_stats(sample):
     in the sample.
     """
     num_chars = len(sample)
-    words = nltk.word_tokenize(sample)
-    num_words = len(words)
+    tokenized_words = nltk.word_tokenize(sample)
+    num_words = len(tokenized_words)
     num_symbols = len([char for char in sample if char.isalnum() or char.isspace()])
     num_capital_letters = sum(1 for char in sample if char.isupper())
 
