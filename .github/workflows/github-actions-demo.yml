@@ -40,7 +40,7 @@ jobs:
         run: coverage report
 
       - name: Run Pylint
-        run: pylint ./src/source.py
+        run: pylint ./src/
 
       - name: Run ruff
         run: ruff check .
