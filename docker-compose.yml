@@ -6,5 +6,5 @@ services:
     ports:
       - "8888:8888"
     volumes:
+      - ./EDA/:/home/jupyter/EDA
       - ./src/:/home/jupyter/src
-
