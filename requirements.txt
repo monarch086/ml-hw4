@@ -1,3 +1,5 @@
+nbformat>=4.2.0
+plotly
 pandas
 numpy
 matplotlib
