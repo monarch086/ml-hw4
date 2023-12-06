@@ -1,10 +1,13 @@
+# pylint: disable=invalid-name
+# pylint: disable=unsubscriptable-object
+
 '''Script for loading the persisted model and making predictions'''
 
 import pickle
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import TruncatedSVD
-from source import clean_text, process_text
+from .source import clean_text, process_text
 
 MODEL_NAME = "MOC_KNC"
 
