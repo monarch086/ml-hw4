@@ -6,7 +6,8 @@ from nltk.corpus import words
 from nltk.tokenize import word_tokenize
 import nltk
 from nltk.stem import WordNetLemmatizer
-nltk.download('wordnet')
+nltk.download('words')
+nltk.download('punkt')
 nltk_words = set(words.words())
 
 def clean_text(sample):
