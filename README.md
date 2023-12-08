@@ -117,3 +117,18 @@ To stop container:
 ````sh
 docker-compose down
 ````
+
+### Build & run prediction server
+
+````sh
+docker build -t prediction-server -f ./Dockerfile_server .
+docker-compose up
+````
+
+To make predictions send a POST request to endpoint `http://192.168.0.109:5000/api/prediction` with text in the body in this format:
+
+````json
+{
+    "text":"Your phrase"
+}
+````
