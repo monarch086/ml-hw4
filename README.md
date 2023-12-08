@@ -77,6 +77,18 @@ For EDA three Jupyter notebooks should be run:
 - `./EDA/DataPreparing.ipynb` - data preprocessing on train and test datasets, including text cleaning and processing (lemmatizing, filtering, and tokenizing). Results are saved to CSV files `train_processed.csv` and `test_processed.csv` accordingly;
 - `./EDA/DataVector.ipynb` - dimensionality reduction and visualization on processed text data: TF-IDF vectorization, SVD dimensionality reduction and vizualization. Results are saved to CSV files `train_ml.csv` and `test_ml.csv` for machine learning purposes.
 
+#### Training model
+
+For training model `./src/trining.ipynb` notebook should be used. For classification **MultiOutputClassifier** model is used. Trained model get stored to `./src/models/MOC_LR.pkl` file.
+
+#### Making predictions
+
+For making predictions put input text to `./data/input.txt` and run this script:
+
+````sh
+py ./src/prediction.py
+````
+
 #### Unit tests
 
 For running unit-tests on your local machine use these commands:
