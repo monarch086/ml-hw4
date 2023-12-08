@@ -8,6 +8,7 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 nltk.download('words')
 nltk.download('punkt')
+nltk.download('wordnet')
 nltk_words = set(words.words())
 
 def clean_text(sample):

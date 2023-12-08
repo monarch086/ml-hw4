@@ -1,0 +1,9 @@
+nbformat>=4.2.0
+plotly
+pandas
+numpy
+matplotlib
+scikit-learn
+num2words
+nltk
+flask

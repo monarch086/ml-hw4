@@ -83,11 +83,7 @@ For training model `./src/trining.ipynb` notebook should be used. For classifica
 
 #### Making predictions
 
-For making predictions put input text to `./data/input.txt` and run this script:
-
-````sh
-py ./src/prediction.py
-````
+For making predictions build Docker image with prediction-server, start the server and make API calls (see instructions below in section 'Build & run prediction server').
 
 #### Unit tests
 
@@ -128,4 +124,19 @@ To stop container:
 
 ````sh
 docker-compose down
+````
+
+### Build & run prediction server
+
+````sh
+docker build -t prediction-server -f ./Dockerfile_server .
+docker-compose up
+````
+
+To make predictions send a POST request to endpoint `http://192.168.0.109:5000/api/prediction` with text in the body in this format:
+
+````json
+{
+    "text":"Your phrase"
+}
 ````
