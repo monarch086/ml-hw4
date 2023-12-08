@@ -83,11 +83,7 @@ For training model `./src/trining.ipynb` notebook should be used. For classifica
 
 #### Making predictions
 
-For making predictions put input text to `./data/input.txt` and run this script:
-
-````sh
-py ./src/prediction.py
-````
+For making predictions build Docker image with prediction-server, start the server and make API calls (see instructions below in section 'Build & run prediction server').
 
 #### Unit tests
 
