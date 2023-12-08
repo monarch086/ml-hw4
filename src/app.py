@@ -1,19 +1,24 @@
+# pylint: disable=import-error
+'''Web-server for making predictions'''
+
 import datetime as dt
-from flask import Flask, request
-from prediction import predict
 import json
+from flask import Flask, request
 import numpy as np
+from prediction import predict
 
 class NumpyEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, np.int64):
-            return int(obj)
-        return json.JSONEncoder.default(self, obj)
+    '''Encoder to JSON'''
+    def default(self, o):
+        if isinstance(o, np.int64):
+            return int(o)
+        return json.JSONEncoder.default(self, o)
 
 app = Flask(__name__)
 
 @app.route("/")
 def home_page():
+    '''Home Page Endpoint'''
     return "<p><h2>KMA ML HW4: Prediction Web Server.</h2></p>"
 
 
@@ -22,6 +27,7 @@ def home_page():
     methods=["POST"],
 )
 def prediction_endpoint():
+    '''Prediction Endpoint'''
     json_data = request.get_json()
     input_text = json_data.get("text")
 
@@ -39,4 +45,4 @@ def prediction_endpoint():
     return json_str
 
 if __name__ == '__main__':
-	app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

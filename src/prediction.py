@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 # pylint: disable=unsubscriptable-object
+# pylint: disable=import-error
 
 '''Script for loading the persisted model and making predictions'''
 
@@ -12,6 +13,7 @@ from source import clean_text, process_text
 MODEL_NAME = "MOC_KNC"
 
 def predict(input_text: str):
+    '''Prediction function'''
 
     input_df = pd.DataFrame.from_dict({
         'raw_text': [input_text]
